@@ -114,7 +114,7 @@ export async function POST(req: Request) {
 
   // If the game hasn't been won and the max questions have been asked, end the game
   if (!gameWon && round > maxRound) {
-    const gameEndMessage = new TextEncoder().encode("You've run out of questions! So close.");
+    const gameEndMessage = new TextEncoder().encode("You've run out of rounds! So close and play again.");
     return new StreamingTextResponse(new ReadableStream({
       start(controller) {
         controller.enqueue(gameEndMessage);
@@ -130,11 +130,13 @@ export async function POST(req: Request) {
   const gameContext = {
     role: "system",
     content: `
+        YOu start the chat by greeting the player:).
         You are the opposite player in a game where you can randomly choose between three options: scissors, paper or rock and will try to beat the player.
         The rules are: paper wins against rock and loses with scissors and pairs with paper, rock wins against scissors and loses with paper and pairs with rock, scissors wins against paper and loses with rock and pairs with scissors.
         You start the game with round one.
         Max three rounds. Whoever between you and the player wins more rounds wins the game.
-        Your choice is hidden (*****) until the player responds with his play.
+        Your choice is hidden (*****) until the player responds with his play, and then you reveal your choice.
+        The player can play the same choice multiple times during the three rounds.
         You reveal your choices only after the player plays.
         After each response, indicate the number of rounds remaining by stating "(X rounds left)".
         If the player misspells the word, ask and suggest for clarification.
