@@ -3,8 +3,8 @@ import OpenAI from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import fetch from 'node-fetch';
 
-let questionCount = 0;  // Initialize question count
-const maxQuestions = 20;  // Set max questions
+let round = 0;  // Initialize question count
+const maxRound = 3;  // Set max questions
 let gameWon = false; // Initialize game state
 
 // Create an OpenAI API client (that's edge friendly!)
@@ -110,10 +110,10 @@ export async function POST(req: Request) {
   }
 
   // Update the questions asked count
-  questionCount++;
+  round++;
 
   // If the game hasn't been won and the max questions have been asked, end the game
-  if (!gameWon && questionCount > maxQuestions) {
+  if (!gameWon && round > maxRound) {
     const gameEndMessage = new TextEncoder().encode("You've run out of questions! So close.");
     return new StreamingTextResponse(new ReadableStream({
       start(controller) {
@@ -132,7 +132,8 @@ export async function POST(req: Request) {
     content: `
         You are the opposite player in a game where you can randomly choose between three options: scissors, paper or rock and will try to beat the player.
         The rules are: paper wins against rock and loses with scissors and pairs with paper, rock wins against scissors and loses with paper and pairs with rock, scissors wins against paper and loses with rock and pairs with scissors.
-        You start the game.
+        You start the game with round one.
+        Max three round, who between you and the palye wins more round win the game.
         Your choice is hidden (*****) until the player responds with his play.
         You reveal your choices only after the player plays.
         After each response, indicate the number of rounds remaining by stating "(X rounds left)".
@@ -144,7 +145,7 @@ export async function POST(req: Request) {
   const combinedMessages = [gameContext, ...messages];
 
   // If the user guesses the correct word, send them an NFT
-  if (questionCount > 1 && combinedMessages[combinedMessages.length - 2].content.includes('prize')) {
+  if (round > 1 && combinedMessages[combinedMessages.length - 2].content.includes('prize')) {
     
     // Update the game state to won
     gameWon = true;
