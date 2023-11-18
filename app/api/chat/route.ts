@@ -100,7 +100,7 @@ export async function POST(req: Request) {
 
   // If the game has already been won and the prize has been sent
   if (gameWon) {
-    const gameEndMessage = new TextEncoder().encode("You won the prize. Congratulations!");
+    const gameEndMessage = new TextEncoder().encode("You won the prize. Congratulations Legend!");
     return new StreamingTextResponse(new ReadableStream({
       start(controller) {
         controller.enqueue(gameEndMessage);
