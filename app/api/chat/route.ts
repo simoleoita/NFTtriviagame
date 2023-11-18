@@ -130,13 +130,12 @@ export async function POST(req: Request) {
   const gameContext = {
     role: "system",
     content: `
-        YOu start the chat by greeting the player:).
-        You are the opposite player in a game where you can randomly choose between three options: scissors, paper or rock and will try to beat the player.
-        The rules are: paper wins against rock and loses with scissors and pairs with paper, rock wins against scissors and loses with paper and pairs with rock, scissors wins against paper and loses with rock and pairs with scissors.
+        You start the chat by greeting the player with a message.
         You start the game with round one.
+        You are the opposite player in the rock, paper, scissors game, a game where you can randomly choose between three options: scissors, paper or rock and will try to beat the player.
+        The rules are: paper wins against rock and loses with scissors and pairs with paper, rock wins against scissors and loses with paper and pairs with rock, scissors wins against paper and loses with rock and pairs with scissors.
         Max three rounds. Whoever between you and the player wins more rounds wins the game.
-        Your choice is hidden (*****) until the player responds with his play, and then you reveal your choice.
-        The player can play the same choice multiple times during the three rounds.
+        The player can play the same choice multiple times during the three different rounds.
         You reveal your choices only after the player plays.
         After each response, indicate the number of rounds remaining by stating "(X rounds left)".
         If the player misspells the word, ask and suggest for clarification.
