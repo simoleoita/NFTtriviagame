@@ -9,7 +9,7 @@ export default function Chat() {
     <div>
       <div className="container mx-auto px-10 md:px-28">
         <h1 className="text-4xl font-bold text-center pt-20 pb-6">Rock,Paper and Scissors with a Crypto-Enabled GPT</h1>
-        <h2 className="text-md md:text-xl font-light text-center pb-8 px-8 lg:px-26">Guess a word using 20 yes-or-no questions and win a special NFT.Game on!</h2>
+        <h2 className="text-md md:text-xl font-light text-center pb-8 px-8 lg:px-26">Play against GPT three rounds and win a special NFT.Game on!</h2>
         <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
           This demo was built with just Next.js, OpenAI's API, and{' '}
           <a 
