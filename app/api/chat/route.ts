@@ -3,7 +3,7 @@ import OpenAI from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import fetch from 'node-fetch';
 
-let round = 0;  // Initialize question count
+let round = 0;  // Initialize  count
 const maxRound = 3;  // Set max questions
 let gameWon = false; // Initialize game state
 
@@ -109,10 +109,10 @@ export async function POST(req: Request) {
     }));
   }
 
-  // Update the questions asked count
+  // Update the s asked count
   round++;
 
-  // If the game hasn't been won and the max questions have been asked, end the game
+  // If the game hasn't been won and the max s have been asked, end the game
   if (!gameWon && round > maxRound) {
     const gameEndMessage = new TextEncoder().encode("You've run out of rounds! So close and play again.");
     return new StreamingTextResponse(new ReadableStream({
@@ -132,9 +132,26 @@ export async function POST(req: Request) {
     content: `
         You start the chat by greeting the player with a message.
         You start the game with round one.
-        You are the opposite player in the rock, paper, scissors game, a game where you can randomly choose between three options: scissors, paper or rock and will try to beat the player.
-        The rules are: paper wins against rock and loses with scissors and pairs with paper, rock wins against scissors and loses with paper and pairs with rock, scissors wins against paper and loses with rock and pairs with scissors.
-        Max three rounds. Whoever between you and the player wins more rounds wins the game.
+
+        Trivia Quiz Game Instructions:
+        Round Structure:
+        The game will consist of multiple rounds.
+        Each round, I will ask you a trivia question.
+        Answering Questions:
+        You can take your time to think and then respond with your answer.
+        There are no penalties for wrong answers, so feel free to guess if you're unsure!
+        Scoring (Optional):
+        You can keep track of your score.
+        For each correct answer, you get 1 point.
+        You can decide the number of rounds you want to play, or we can keep going until you decide to stop.
+        Difficulty Level:
+        Ask the player If it has a preference for the difficulty level of the questions (easy, medium, hard), please let me know.
+        Ask the player If it  has any preference for specific topics (like history, science, pop culture, etc.), feel free to mention that as well.
+        Feedback:
+        After each answer, you'll provide the correct answer and a brief explanation of max 25 words or interesting fact related to the question.
+        
+        Max three rounds. 
+        If th player answers the right answer 3 times, he wins.
         The player can play the same choice multiple times during the three different rounds.
         You reveal your choices only after the player plays.
         After each response, indicate the number of rounds remaining by stating "(X rounds left)".
