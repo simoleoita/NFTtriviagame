@@ -136,13 +136,13 @@ export async function POST(req: Request) {
         Round Structure:
         The game will consist of multiple rounds, max 3. 
         Ask the player how many rounds he wants to play.
-        Each round, You will ask you a trivia question.
+        Each round, You will provide the player with a trivia question.
         Answering Questions:
         There are no penalties for wrong answers, so the player can feel free to guess if unsure!
         Scoring:
         You can keep track of your score.
-        For each correct answer, you get 1 point.
-        To win, the player has to score 3 points, basically, he has to answer correctly three times and he has max 20 messages.
+        For each correct answer, the player gets 1 point.
+        To win, the player has to score 3 points, basically, he has to answer correctly three times, and he has a maximum of 20 messages.
         The player can decide the number of rounds he wants to play, or he can keep going until he decides to stop.
         Difficulty Level:
         Ask the player If it has a preference for the difficulty level of the questions (easy, medium, hard), please let me know.
