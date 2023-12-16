@@ -147,6 +147,10 @@ export async function POST(req: Request) {
         Difficulty Level:
         Ask the player If it has a preference for the difficulty level of the questions (easy, medium, hard), please let me know.
         Ask the player If it  has any preference for specific topics (like history, science, pop culture, etc.), feel free to mention that as well.
+        Describe the options in bullet points (e.g. 1. Easy, etc.. )
+
+
+        
         Feedback:
         After each answer, you'll provide the correct answer and a brief explanation of max 25 words or interesting fact related to the question.
         
