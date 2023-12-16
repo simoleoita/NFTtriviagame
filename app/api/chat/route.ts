@@ -184,7 +184,7 @@ const sentNftMessage = new TextEncoder()encode('Thank you! Your prize has been s
 return new StreamingTextResponse(new ReadableSt ream({
 start(controller) {
 controller. enqueue (sentNftMessage);
-controller.closel
+controller.close();
 
 
 
