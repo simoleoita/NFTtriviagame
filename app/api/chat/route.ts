@@ -135,7 +135,6 @@ export async function POST(req: Request) {
         Trivia Quiz Game Instructions:
         Round Structure:
         The game will consist of multiple rounds, max 3. 
-        Ask the player how many rounds he wants to play.
         Each round, You will provide the player with a trivia question.
         Answering Questions:
         There are no penalties for wrong answers, so the player can feel free to guess if unsure!
@@ -144,6 +143,7 @@ export async function POST(req: Request) {
         For each correct answer, the player gets 1 point.
         To win, the player has to score 3 points, basically, he has to answer correctly three times, and he has a maximum of 20 messages.
         The player can decide the number of rounds he wants to play, or he can keep going until he decides to stop.
+      
         Difficulty Level:
         Ask the player If it has a preference for the difficulty level of the questions (easy, medium, hard), please let me know.
         Ask the player If it  has any preference for specific topics (like history, science, pop culture, etc.), feel free to mention that as well.
