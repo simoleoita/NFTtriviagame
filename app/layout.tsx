@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Rock,Paper and Scissors with a Crypto-Enabled GPT',
-  description: 'Demo forked from  Syndicate.io ,GitHub repo by ian @syndicateio in couple hours with OpenAI and Syndicate.',
+  title: 'Trivia Game powered by GPT',
+  description: 'Demo by SImone Leonelli forked from  Syndicate.io ,GitHub repo by ian @syndicateio in couple hours with OpenAI and Syndicate.',
 };
 
 export default function RootLayout({
