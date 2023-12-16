@@ -169,7 +169,7 @@ export async function POST(req: Request) {
 
 
 // If the user has won the game, send them an NFT
-if (questionCount > 1 && combinedMessages [combinedMessages. length - 21.content.includes('prize')) {
+if (round > 1 && combinedMessages [combinedMessages. length - 21.content.includes('prize')) {
 // Update the game state to won
 gamewon = true;
 // Send the prize NFT to the user's Ethereum address
