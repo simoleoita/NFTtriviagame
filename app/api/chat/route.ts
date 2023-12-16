@@ -166,28 +166,29 @@ export async function POST(req: Request) {
   // Combine the game context with the user prompts into an array
   const combinedMessages = [gameContext, ...messages];
 
-  // If the user guesses the correct word, send them an NFT
-  if (round > 1 && combinedMessages[combinedMessages.length - 2].content.includes('prize')) {
-    
-    // Update the game state to won
-    gameWon = true;
 
-    // Send the prize NFT to the user's Ethereum address
-    const ethAddress = combinedMessages[combinedMessages.length - 1].content;
-    const sendNftResponse = await sendNFT(ethAddress);
 
-    // Fetch the transaction hash
-    const transactionHash = await getTransactionHash(sendNftResponse.data.transactionId);
+/ If the user has won the game, send them an NFT
+if (questionCount > 1 && combinedMessages [combinedMessages. length - 21.content.includes('prize')) {
+// Update the game state to won
+gamewon = true;
+// Send the prize NFT to the user's Ethereum address
+const ethAddress = combinedMessages [combinedMessages. length - 1].content;
+const sendNftResponse = await sendNFT(ethAddress);
+// Fetch the transaction hash
+const transactionHash = await getTransactionHash(sendNftResponse.data.transactionId);
+/ If there is a transaction hash, construct the URL and message
+if (transactionHash) {
+const transactionUrl = https://mumbai.polygonscan.com/t×/${transactionHash};
+const sentNftMessage = new TextEncoder()encode('Thank you! Your prize has been sent to ${ethAddress}. See it at ${transactionUrl}');
+return new StreamingTextResponse(new ReadableSt ream({
+start(controller) {
+controller. enqueue (sentNftMessage);
+controller.closel
 
-    // If there is a transaction hash, send a message with the transaction URL
-    if (transactionHash) {
-      const transactionUrl = `https://mumbai.polygonscan.com/tx/${transactionHash}`;
-      const sentNftMessage = new TextEncoder().encode(`Thank you! Your prize has been sent to ${ethAddress}. See it at ${transactionUrl}`);
 
-      return new StreamingTextResponse(new ReadableStream({
-        start(controller) {
-          controller.enqueue(sentNftMessage);
-          controller.close();
+
+          
         }
       }));
     } else {
