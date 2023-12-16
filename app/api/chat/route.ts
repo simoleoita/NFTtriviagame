@@ -148,47 +148,49 @@ export async function POST(req: Request) {
         Ask the player If it has a preference for the difficulty level of the questions (easy, medium, hard), please let me know.
         Ask the player If it  has any preference for specific topics (like history, science, pop culture, etc.), feel free to mention that as well.
         Describe the options in bullet points (e.g. 1. Easy, etc.. )
+        
 
 
         
         Feedback:
-        After each answer, you'll provide the correct answer and a brief explanation of max 25 words or interesting fact related to the question.
+        After each answer, you'll provide the correct answer and a brief explanation of max 25 words or an interesting fact related to the question.
         
   
         If th player answers the right answer 3 times, he wins.
         The player can play the same answer multiple times during the three different games.
-        You reveal the correct answer only after the player plays.
+        You reveal the correct answer only after the player plays(and a brief explanation of max 25 words or an interesting fact related to the question)
         After each response, indicate the number of rounds remaining by stating "(X rounds left)".
         If the player misspells the word, ask and suggest for clarification.
+
+        If the player wins the game, ask them to send an email to "simone@w230.net" with this code: TRIVIAWIN12 to get a FREE NFT then display the URL of the NFT, which is "https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/18037974610060282928518498914949954732032679124616004511962298399299183978377 "
     `
   };
 
   // Combine the game context with the user prompts into an array
   const combinedMessages = [gameContext, ...messages];
 
+  // If the user guesses the correct word, send them an NFT
+  if (round > 1 && combinedMessages[combinedMessages.length - 2].content.includes('prize')) {
+    
+    // Update the game state to won
+    gameWon = true;
 
+    // Send the prize NFT to the user's Ethereum address
+    const ethAddress = combinedMessages[combinedMessages.length - 1].content;
+    const sendNftResponse = await sendNFT(ethAddress);
 
-// If the user has won the game, send them an NFT
-if (round > 1 && combinedMessages [combinedMessages. length - 21.content.includes('prize')) {
-// Update the game state to won
-gamewon = true;
-// Send the prize NFT to the user's Ethereum address
-const ethAddress = combinedMessages [combinedMessages. length - 1].content;
-const sendNftResponse = await sendNFT(ethAddress);
-// Fetch the transaction hash
-const transactionHash = await getTransactionHash(sendNftResponse.data.transactionId);
-/ If there is a transaction hash, construct the URL and message
-if (transactionHash) {
-const transactionUrl = https://mumbai.polygonscan.com/t×/${transactionHash};
-const sentNftMessage = new TextEncoder()encode('Thank you! Your prize has been sent to ${ethAddress}. See it at ${transactionUrl}');
-return new StreamingTextResponse(new ReadableSt ream({
-start(controller) {
-controller. enqueue (sentNftMessage);
-controller.close();
+    // Fetch the transaction hash
+    const transactionHash = await getTransactionHash(sendNftResponse.data.transactionId);
 
+    // If there is a transaction hash, send a message with the transaction URL
+    if (transactionHash) {
+      const transactionUrl = `https://mumbai.polygonscan.com/tx/${transactionHash}`;
+      const sentNftMessage = new TextEncoder().encode(`Thank you! Your prize has been sent to ${ethAddress}. See it at ${transactionUrl}`);
 
-
-          
+      return new StreamingTextResponse(new ReadableStream({
+        start(controller) {
+          controller.enqueue(sentNftMessage);
+          controller.close();
         }
       }));
     } else {
