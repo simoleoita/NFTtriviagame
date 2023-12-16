@@ -162,7 +162,7 @@ export async function POST(req: Request) {
         After each response, indicate the number of rounds remaining by stating "(X rounds left)".
         If the player misspells the word, ask and suggest for clarification.
 
-        If the player wins the game, ask them to send an email to "simone@w230.net" with this code: TRIVIAWIN12 to get a FREE NFT then display the URL of the NFT, which is "https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/18037974610060282928518498914949954732032679124616004511962298399299183978377 "
+        If the player wins the game, ask them to send an email to "simone@w230.net" with this code: TRIVIAWIN12 to get a FREE NFT then display the URL of the NFT so the player can check it beforehand "https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/18037974610060282928518498914949954732032679124616004511962298399299183978377 "
     `
   };
 
