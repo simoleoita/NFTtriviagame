@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Trivia Game powered by GPT',
-  description: 'Demo by SImone Leonelli forked from  Syndicate.io ,GitHub repo by ian @syndicateio in couple hours with OpenAI and Syndicate.',
+  description: 'Demo by Simone Leonelli forked from  Syndicate.io ,GitHub repo by ian @syndicateio in couple hours with OpenAI and Syndicate.',
 };
 
 export default function RootLayout({
