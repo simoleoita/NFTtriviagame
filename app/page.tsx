@@ -13,7 +13,7 @@ export default function Chat() {
         <h3 className="text-md md:text-xl font-light text-center pb-12 px-6 lg:px-18">Allow a few seconds to the system to start</h3>
 
         <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
-          This demo was built with just Next.js, OpenAI's API, and{' '}
+          This demo by Simone Leonelli was built with just Next.js, OpenAI's API, and{' '}
           <a 
             href="https://docs.syndicate.io"
             className="text-blue-500 hover:underline"
@@ -23,7 +23,7 @@ export default function Chat() {
           </a>
           </p>
           <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
-            No custom backend for keys, wallets, transactions, gas, or RPCs was required. Check out the repo{' '}
+            Check out the repo{' '}
           <a 
             href="https://github.com/ianDAOs/demo-crypto-llm-20questions"
             className="text-blue-500 hover:underline"
